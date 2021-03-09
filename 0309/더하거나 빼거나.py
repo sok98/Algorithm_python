@@ -3,7 +3,7 @@ target_number = 3
 output = []
 
 
-def BT(array, target):
+def BT(array, target):  # 백트래킹
     if array >= len(numbers):
         output.append(target)
         return
