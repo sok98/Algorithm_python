@@ -1,32 +1,22 @@
 line = []
-start = ["(", "["]
+find = {')': '(', ']': '['}
 
 line.append(input())
 while line[-1] != ".":
     line.append(input())
 
-
-def search(k, s):
-    p = "#"
-    while p != start[k]:
-        if not s or p == start[(k+1) % 2]:
-            global result
-            result = "no"
-            return
-        p = s.pop()
-
-
-stack = []
 for i in line[:-1:]:
     result = "yes"
-    for n in range(len(i)):
-        if i[n] == ")":
-            search(0, stack)
-        elif i[n] == "]":
-            search(1, stack)
-        else:
-            stack.append(i[n])
-
-        if not stack:
-            break
+    stack = []
+    for n in i:
+        if n in find.values():  # (, [ 가 들어올 때
+            stack.append(n)
+        elif n in find:  # ), ] 가 들어올 때
+            if stack and stack[-1] == find[n]:  # stack의 마지막 값이 내 짝이라면
+                stack.pop()
+            else:
+                result = "no"
+                break
+    if stack:   # stack에 ( 나 [가 있는 상태로 끝났을 때
+        result = "no"
     print(result)
