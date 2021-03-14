@@ -9,13 +9,11 @@ k = 0
 
 
 def s_pop(s):
-    s.pop()
-    result.append("-")
     global k
-    if n > k:
+    while n > k and stack and numbers[k] == s[-1]:
+        s.pop()
+        result.append("-")
         k += 1
-    if numbers[k] == s[-1]:
-        s_pop(s)
 
 
 for i in range(1, n+1):
@@ -24,4 +22,8 @@ for i in range(1, n+1):
     if numbers[k] == stack[-1]:
         s_pop(stack)
 
-print(result)
+if n > k:
+    print("NO")
+else:
+    for i in result:
+        print(i)
