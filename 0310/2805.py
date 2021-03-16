@@ -28,13 +28,19 @@ elif get == M:  # 가져갈 나무가 필요한 나무와 같을 때
     print(min)
 
 else:  # 가져갈 나무가 필요한 나무보다 많을 때
+    cut = 0
     while max >= min:
-        pivot = math.ceil((max + min) / 2)
+        pivot = (max + min) // 2
         get = binary(pivot)  # 이진탐색
+
         if get < M:    # 이진탐색 결과가 필요한 나무보다 적을 때
             max = pivot - 1
+
         elif get > M+tall:  # 이진탐색 결과가 필요한 나무보다 많을 때
+            cut = pivot
             min = pivot + 1
+
         else:
+            cut = pivot
             break
-    print(pivot)
+    print(cut)
