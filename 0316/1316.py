@@ -12,5 +12,4 @@ for i in range(N):
             break
         before = j
 
-
 print(N-check)

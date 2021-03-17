@@ -13,9 +13,9 @@ for i in range(2, int(len(numbers)**0.5+1)):
         for n in range(i**2, len(numbers), i):
             numbers[n] = False
 
-for i in case:
+for n in case:
     result = 0
-    for t in range(i+1, (i * 2)+1):
+    for t in range(n+1, (n * 2)+1):
         if numbers[t] == True:
             result += 1
     print(result)
