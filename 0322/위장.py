@@ -1,12 +1,13 @@
 def solution(clothes):
-    d = {}
-    answer = 0
+    kinds = {}
     for i in clothes:
-        d[i[0]] = i[1]
-    answer += len(d)
+        if i[1] in kinds:
+            kinds[i[1]] += 1
+        else:
+            kinds[i[1]] = 2
 
-    return answer
+    answer = 1
+    for j in kinds.values():
+        answer *= j
 
-
-print(solution([["crowmask", "face"], ["bluesunglasses", "face"],
-                ["smoky_makeup", "face"]]))
+    return answer-1

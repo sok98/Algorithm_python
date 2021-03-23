@@ -6,9 +6,6 @@ con = []
 for i in range(x):
     v = list(input().split())
     view.append(v)
-
-# for i in range(x):
-#     con[i].append()
-
-print(view)
-print(view[1][1])
+for i in range(x):
+    c = list(input().split())
+    con.append(c)
