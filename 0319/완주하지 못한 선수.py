@@ -15,7 +15,3 @@ def solution(participant, completion):
             answer = k
 
     return answer
-
-
-print(solution(["mislav", "stanko", "mislav", "ana"],
-               ["stanko", "ana", "mislav"]))
