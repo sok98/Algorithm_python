@@ -1,26 +1,35 @@
-from string import ascii_uppercase
-alphabet = list(ascii_uppercase)
-point = 0
-
-
 def solution(name):
+    name = list(name)
     answer = 0
-    global point
-    for i in range(len(name)):
-        if name[i] != "A":
-            if i - point < point + len(name) - i:
-                answer += i - point
-            else:
-                answer += point + len(name) - i
+    i = 0
 
-            point = i
+    while 1:
+        left = 1
+        right = 1
+        # 알파벳 바꾸기
+        if name[i] != 'A':
+            answer += min(ord(name[i])-ord('A'), ord('Z')-ord(name[i])+1)
+        name[i] = 'A'
 
-            if alphabet.index(name[i]) < 26 - alphabet.index(name[i]):
-                answer += alphabet.index(name[i])
+        # 위치 바꾸기
+        if name == ['A']*len(name):
+            break
+        else:
+            for k in range(1, len(name)):
+                if name[i + k] == "A":
+                    right += 1
+                else:
+                    break
+                if name[i - k] == "A":
+                    left += 1
+                else:
+                    break
+
+            if right > left:
+                answer += left
+                i -= left
             else:
-                answer += 26 - alphabet.index(name[i])
+                answer += right
+                i += right
 
     return answer
-
-
-print(solution("JEROEN"))
