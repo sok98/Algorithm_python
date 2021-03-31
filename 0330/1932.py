@@ -13,9 +13,4 @@ for i in range(1, n):
         else:
             number[i][j] += max(number[i - 1][j - 1], number[i - 1][j])
 
-answer = 0
-for k in range(n):
-    if answer < number[n - 1][k]:
-        answer = number[n - 1][k]
-
-print(answer)
+print(max(number[n-1]))
