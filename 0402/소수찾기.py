@@ -1,3 +1,6 @@
+import itertools
+
+
 def solution(numbers):
     answer = {}
     numbers = list(numbers)
@@ -10,7 +13,6 @@ def solution(numbers):
     for i in numbers:
         max_number += str(i)
     max_number = int(max_number)
-    print("max_number---", max_number)
 
     # 소수 True로 저장하기
     idx = [True for i in range(max_number + 1)]
@@ -21,23 +23,12 @@ def solution(numbers):
             for j in range(2*i, max_number+1, i):
                 idx[j] = False
 
-    # # 숫자 조합찾기
-    # def combi(n, exp):
-    #     if len(str(n)) > len(numbers):
-    #         print("len(str(n) : ", len(str(n)),
-    #               "len(numbers) : ", len(numbers))
-    #         return
-    #     print("int(n)", int(n))
-    #     print("idx[int(n)]", idx[int(n)])
-    #     answer[int(n)] = idx[int(n)]
-    #     for i in numbers:
-    #         if i.index not in exp:
-    #             exp_copy = exp
-    #             exp_copy.append(i.index)
-    #             combi(int(str(n)+i), exp_copy)
-
-    # for i in numbers:
-    #     combi(i, [i.index])
+    print(numbers)
+    for i in range(1, len(numbers)+1):
+        target = list(map(''.join, itertools.permutations(numbers, i)))
+        for j in target:
+            if int(j) not in answer:
+                answer[int(j)] = idx[int(j)]
 
     result = 0
     for v in answer.values():
