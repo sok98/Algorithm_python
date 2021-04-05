@@ -8,10 +8,10 @@ for i in range(N):
 
 all_players = [i for i in range(N)]
 teams = []
-answer = []
 for t in combinations(all_players, N // 2):
     teams.append(list(t))
 
+answer = []
 for t in range(len(teams) // 2):
 
     A_stats = 0
