@@ -1,24 +1,30 @@
-graph_list = {1: set([3, 4]),
-              2: set([3, 4, 5]),
-              3: set([1, 5]),
-              4: set([1]),
-              5: set([2, 6]),
-              6: set([3, 5])}
-root_node = 1
+import sys
+n = int(sys.stdin.readline())
 
-print(graph_list)
+color_paper = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+
+white = 0
+blue = 0
 
 
-def DFS(graph, root):
-    visited = []
-    stack = [root]
+def cut(x, y, n):
+    global white, blue
+    check = color_paper[x][y]
+    for i in range(x, x + n):
+        for j in range(y, y + n):
+            if check != color_paper[i][j]:
+                cut(x, y, n // 2)
+                cut(x, y + n // 2, n // 2)
+                cut(x + n // 2, y, n // 2)
+                cut(x + n // 2, y + n // 2, n // 2)
+                return
+    if check == 0:
+        white += 1
+    else:
+        blue += 1
 
-    while stack:
-        n = stack.pop()
-        if n not in visited:
-            visited.append(n)
-            stack += graph[n] - set(visited)
-    return visited
 
+cut(0, 0, n)
 
-print(DFS(graph_list, root_node))
+print(white)
+print(blue)
