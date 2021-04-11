@@ -1,30 +1,31 @@
-import sys
-n = int(sys.stdin.readline())
+def solution(tickets):
+    # 1. 그래프 생성
+    routes = dict()
 
-color_paper = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+    for (start, end) in tickets:
+        routes[start] = routes.get(start, []) + [end]
 
-white = 0
-blue = 0
+    # 2. 시작점 - [끝점] 역순으로 정렬
+    for r in routes.keys():
+        routes[r].sort(reverse=True)
+
+    print(routes)
+    # 3. DFS 알고리즘으로 path를 만들어줌.
+    st = ["ICN"]
+    path = []
+
+    while st:
+        top = st[-1]
+
+        if top not in routes or len(routes[top]) == 0:
+            path.append(st.pop())
+        else:
+            st.append(routes[top][-1])
+            routes[top] = routes[top][:-1]
+
+    # 4. 만든 path를 거꾸로 돌림.
+    answer = path[::-1]
+    return answer
 
 
-def cut(x, y, n):
-    global white, blue
-    check = color_paper[x][y]
-    for i in range(x, x + n):
-        for j in range(y, y + n):
-            if check != color_paper[i][j]:
-                cut(x, y, n // 2)
-                cut(x, y + n // 2, n // 2)
-                cut(x + n // 2, y, n // 2)
-                cut(x + n // 2, y + n // 2, n // 2)
-                return
-    if check == 0:
-        white += 1
-    else:
-        blue += 1
-
-
-cut(0, 0, n)
-
-print(white)
-print(blue)
+solution(	[["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
