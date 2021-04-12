@@ -1,31 +1,28 @@
-def solution(tickets):
-    # 1. 그래프 생성
-    routes = dict()
+import sys
+input = sys.stdin.readline()
 
-    for (start, end) in tickets:
-        routes[start] = routes.get(start, []) + [end]
+# N = int(input())
+N = 6
+step = [0]*(N+1)
+count = [0]*(N+1)
 
-    # 2. 시작점 - [끝점] 역순으로 정렬
-    for r in routes.keys():
-        routes[r].sort(reverse=True)
+count[0] = 0
+sum = 0
 
-    print(routes)
-    # 3. DFS 알고리즘으로 path를 만들어줌.
-    st = ["ICN"]
-    path = []
-
-    while st:
-        top = st[-1]
-
-        if top not in routes or len(routes[top]) == 0:
-            path.append(st.pop())
-        else:
-            st.append(routes[top][-1])
-            routes[top] = routes[top][:-1]
-
-    # 4. 만든 path를 거꾸로 돌림.
-    answer = path[::-1]
-    return answer
+for i in range(1, 3):  # 1, 2 계단은 무조건 밟음
+    step[i] = int(input())
+    step[i] += sum
+    sum = step[i]
+    count[i] += 1
 
 
-solution(	[["ICN", "JFK"], ["HND", "IAD"], ["JFK", "HND"]])
+for i in range(3, N+1):
+    value = int(input())
+
+    if count[i-1] >= 2 or (step[i-1] < step[i-2]):
+        step[i] = step[i-2]+value
+    else:
+        step[i] = step[i-1]+value
+        count[i] = count[i-1]+1
+
+print(step[N])
