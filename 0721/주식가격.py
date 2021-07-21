@@ -1,6 +1,5 @@
 def solution(prices):
     answer = [i for i in range(len(prices)-1,-1,-1)]
-    print(answer)
     
     for before in range(len(prices)):
         for after in range(before+1,len(prices)):
