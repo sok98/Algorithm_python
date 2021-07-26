@@ -1,5 +1,3 @@
-import operator 
-
 def solution(genres, plays):
     answer = []
     count = {}
