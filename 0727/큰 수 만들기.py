@@ -1,5 +1,5 @@
 def solution(number, k):
-    answer = ''
+    # answer = ''
 
     # # max 함수
     # def _max(s, e):
@@ -10,7 +10,6 @@ def solution(number, k):
     #         elif number[i] > num[1]:
     #             num = [i, number[i]]
     #     return num
-
 
     # start = 0
     # for end in range(k+1, len(number)):
