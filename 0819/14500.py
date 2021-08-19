@@ -2,6 +2,37 @@ import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-board = []
-for _ in range(N):
-    board.append(list(map(int, input().split())))
+board = [list(map(int, input().split())) for _ in range(N)]
+answer = []
+tetrominos = [[(0,0), (0,1), (0,2), (0,3)],
+              [(0,0), (1,0), (2,0), (3,0)],
+              [(0,0), (0,1), (1,0), (1,1)],
+              [(0,0), (1,0), (1,1), (2,1)],
+              [(1,0), (1,1), (0,1), (0,2)],
+              [(0,0), (0,1), (1,1), (1,2)],
+              [(0,1), (1,0), (1,1), (2,0)],
+              [(0,0), (0,1), (0,2), (1,1)],
+              [(0,1), (1,0), (1,1), (2,1)],
+              [(0,1), (1,0), (1,1), (1,2)],
+              [(0,0), (1,0), (2,0), (1,1)],
+              [(0,0), (1,0), (2,0), (2,1)],
+              [(0,1), (1,1), (2,1), (2,0)],
+              [(0,0), (0,1), (0,2), (1,0)],
+              [(0,0), (0,1), (0,2), (1,2)],
+              [(0,0), (0,1), (1,1), (2,1)],
+              [(0,0), (0,1), (1,0), (2,0)],
+              [(0,2), (1,0), (1,1), (1,2)],
+              [(0,0), (1,0), (1,1), (1,2)]]
+
+for x in range(N):
+    for y in range(M):
+        for tetromino in tetrominos:
+            total = 0
+            for _x, _y in tetromino:
+                try:
+                    total += board[x+_x][y+_y]
+                except IndexError:
+                    break
+            answer.append(total)
+
+print(max(answer))
