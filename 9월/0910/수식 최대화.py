@@ -26,6 +26,3 @@ def solution(expression):
         answer = max(answer, (abs(calcul[0])))
 
     return answer
-
-
-print(solution("50*6-3*2"))
