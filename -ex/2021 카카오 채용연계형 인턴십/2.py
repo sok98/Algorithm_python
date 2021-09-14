@@ -30,6 +30,7 @@ def solution(places):
                     if y + 2 < 5 and room[x][y + 1] == "O" and room[x][y + 2] == "P":
                         check = 0
                         break
+            
             if check == 0:
                 break
         answer.append(check)
