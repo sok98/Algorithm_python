@@ -17,7 +17,6 @@ def solution(n, k):
     
     return answer
 
-
 def convert(num, n):
     result = []
     while num != 0:
