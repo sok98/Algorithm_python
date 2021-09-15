@@ -13,14 +13,8 @@ def solution(enter, leave):
                 answer[r] += 1
         room.append(i)
 
-        print(room)
-        print(leave)
-
         while room and leave and leave[0] in room:
             room.remove(leave[0])
             leave.popleft()
     
     return answer[1:]
-
-
-print(solution([1,4,2,3], [2,1,3,4]))
