@@ -7,14 +7,12 @@ def solution(enter, leave):
     room = []
     for i in enter:
         # 원래 있던 숫자랑 만남 표시
-        if room:
-            answer[i] += len(room)
-            for r in room:
-                answer[r] += 1
+        for r in room:
+            answer[r] += 1
+        answer[i] += len(room)
         room.append(i)
 
-        while room and leave and leave[0] in room:
-            room.remove(leave[0])
-            leave.popleft()
+        while leave and leave[0] in room:
+            room.remove(leave.popleft())
     
     return answer[1:]
