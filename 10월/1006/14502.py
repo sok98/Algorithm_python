@@ -1,6 +1,7 @@
 from itertools import combinations
 from copy import deepcopy
 import sys
+
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
